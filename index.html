@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus | Gestão de Metas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <nav class="bottom-nav">
+        <button onclick="showScreen('home')" class="nav-item active" id="nav-home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </button>
+        <button onclick="showScreen('nova-meta')" class="nav-item" id="nav-add">
+            <i class="fas fa-plus-circle"></i>
+            <span>Meta</span>
+        </button>
+        <button onclick="showScreen('conquistas')" class="nav-item" id="nav-awards">
+            <i class="fas fa-trophy"></i>
+            <span>Conquistas</span>
+        </button>
+        <button onclick="showScreen('perfil')" class="nav-item" id="nav-profile">
+            <i class="fas fa-user"></i>
+            <span>Perfil</span>
+        </button>
+    </nav>
+
+    <main id="app">
+        <section id="screen-home" class="screen">
+            <header>
+                <h1>Minhas Metas</h1>
+                <p id="date-now"></p>
+            </header>
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <span id="total-progress">0%</span>
+                    <label>Progresso Geral</label>
+                </div>
+            </div>
+            <div id="goals-list" class="goals-container"></div>
+        </section>
+
+        <section id="screen-nova-meta" class="screen hidden">
+            <header>
+                <h2>Nova Meta</h2>
+            </header>
+            <form id="goal-form" class="form-group">
+                <label>Nome da Meta</label>
+                <input type="text" id="goal-name" placeholder="Ex: Ler 10 livros" required>
+                <label>Prazo</label>
+                <input type="date" id="goal-deadline" required>
+                <label>Progresso Inicial (%)</label>
+                <input type="number" id="goal-progress" min="0" max="100" value="0">
+                <button type="submit" class="btn-save">Salvar Meta</button>
+            </form>
+        </section>
+
+        <section id="screen-conquistas" class="screen hidden">
+            <header>
+                <h2>Conquistas</h2>
+                <p>Metas concluídas com sucesso 🏆</p>
+            </header>
+            <div class="awards-grid" id="awards-list"></div>
+        </section>
+
+        <section id="screen-perfil" class="screen hidden">
+            <header>
+                <h2>Perfil</h2>
+            </header>
+            <div class="profile-info">
+                <div class="avatar-container" onclick="document.getElementById('photo-upload').click()">
+                    <div class="avatar" id="profile-img-display"></div>
+                    <div class="avatar-overlay"><i class="fas fa-camera"></i></div>
+                </div>
+                <input type="file" id="photo-upload" hidden accept="image/*">
+                
+                <h3 id="display-name">Estudante de Sucesso</h3>
+                <p id="display-level">Nível 1 - Iniciante</p>
+
+                <div id="completed-goals-profile">
+                    <h4><i class="fas fa-check-circle"></i> Metas Concluídas</h4>
+                    <div id="completed-list-items"></div>
+                </div>
+            </div>
+
+            <div class="settings-list">
+                <div class="setting-item">
+                    <span>Modo Noturno</span>
+                    <input type="checkbox" id="dark-mode-toggle">
+                </div>
+                <hr>
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Editar Nome</label>
+                    <input type="text" id="edit-name" placeholder="Seu nome">
+                    <button class="btn-save" onclick="saveProfile()">Atualizar Nome</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/database.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

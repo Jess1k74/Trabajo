@@ -1,0 +1,109 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #a855f7;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --gray: #94a3b8;
+    --border: #e2e8f0;
+}
+
+[data-theme="dark"] {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --gray: #64748b;
+    --border: #334155;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body { 
+    background-color: var(--bg); 
+    color: var(--text); 
+    padding-bottom: 80px; 
+    transition: 0.3s;
+}
+
+.screen { padding: 20px; max-width: 600px; margin: 0 auto; }
+
+/* Grid de Metas */
+.goals-container, .awards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Avatar */
+.avatar-container {
+    position: relative;
+    width: 100px; height: 100px;
+    margin: 0 auto 15px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid var(--primary);
+    background-image: url('https://via.placeholder.com/100');
+}
+
+.avatar-overlay {
+    position: absolute; bottom: 0; right: 0;
+    background: var(--primary);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* Cards */
+.goal-card, .award-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+}
+
+/* Progress Bar */
+.progress-bar-bg { background: var(--border); height: 12px; border-radius: 6px; margin: 15px 0; cursor: pointer; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--secondary)); border-radius: 6px; transition: 0.5s; }
+
+/* Lista de Conquistas no Perfil */
+#completed-goals-profile { margin-top: 25px; text-align: left; }
+#completed-goals-profile h4 { font-size: 0.9rem; color: var(--gray); margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
+
+.completed-item-card {
+    background: var(--card);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.completed-item-card span { font-weight: bold; font-size: 0.9rem; }
+.completed-item-card small { color: var(--gray); display: block; margin-top: 2px; }
+
+/* Navegação */
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0;
+    width: 100%; height: 70px;
+    background: var(--card);
+    display: flex; justify-content: space-around; align-items: center;
+    border-top: 1px solid var(--border);
+}
+
+.nav-item { background: none; border: none; color: var(--gray); display: flex; flex-direction: column; align-items: center; font-size: 0.7rem; }
+.nav-item.active { color: var(--primary); }
+
+.hidden { display: none; }
+.btn-save { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+.form-group input { width: 100%; padding: 10px; margin: 8px 0 15px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); color: var(--text); }
