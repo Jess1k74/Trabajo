@@ -12,17 +12,13 @@ const Database = {
         return data ? JSON.parse(data) : [];
     },
 
-    updateGoal(id, progress) {
+    updateGoal(id, progress, tasks = null) {
         let goals = this.getAllGoals();
         goals = goals.map(g => {
             if(g.id === id) {
                 g.progresso = progress;
-                // Ajuste: Salva data se for 100% e não tiver data ainda
-                if (progress >= 100 && !g.dataConclusao) {
-                    g.dataConclusao = new Date().toLocaleDateString('pt-BR');
-                } else if (progress < 100) {
-                    g.dataConclusao = null; 
-                }
+                if(tasks) g.tarefas = tasks;
+                g.dataConclusao = progress >= 100 ? new Date().toLocaleDateString('pt-BR') : null;
             }
             return g;
         });
@@ -30,8 +26,7 @@ const Database = {
     },
 
     deleteGoal(id) {
-        let goals = this.getAllGoals();
-        goals = goals.filter(g => g.id !== id);
+        let goals = this.getAllGoals().filter(g => g.id !== id);
         localStorage.setItem(DB_KEY, JSON.stringify(goals));
     }
 };
