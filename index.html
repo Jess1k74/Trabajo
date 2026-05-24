@@ -46,16 +46,36 @@
 
         <section id="screen-nova-meta" class="screen hidden">
             <header>
-                <h2>Nova Meta</h2>
+                <h2 id="form-title">Nova Meta</h2>
             </header>
             <form id="goal-form" class="form-group">
+                <input type="hidden" id="editing-id" value="">
+
                 <label>Nome da Meta</label>
-                <input type="text" id="goal-name" placeholder="Ex: Ler 10 livros" required>
+                <input type="text" id="goal-name" placeholder="Ex: Projeto de Verão" required>
+                
+                <label>Modo de Progresso</label>
+                <select id="goal-mode" onchange="toggleInputMode()" style="width: 100%; padding: 12px; border-radius: 8px; margin-bottom: 15px; background: var(--card); color: var(--text); border: 1px solid var(--border);">
+                    <option value="manual">Manual (Digitar %)</option>
+                    <option value="auto">Automático (Checklist)</option>
+                </select>
+
+                <label id="label-desc">Descrição</label>
+                <p id="instruction-hint" style="font-size: 0.75rem; color: var(--primary); margin-bottom: 5px; display: none;">
+                    💡 Dica: Comece cada linha com "-" para criar uma checklist.
+                </p>
+                <textarea id="goal-description" placeholder="Detalhes da sua meta..." rows="4"></textarea>
+                
                 <label>Prazo</label>
                 <input type="date" id="goal-deadline" required>
-                <label>Progresso Inicial (%)</label>
-                <input type="number" id="goal-progress" min="0" max="100" value="0">
-                <button type="submit" class="btn-save">Salvar Meta</button>
+                
+                <div id="manual-progress-container">
+                    <label>Progresso Inicial (%)</label>
+                    <input type="number" id="goal-progress" min="0" max="100" value="0">
+                </div>
+                
+                <button type="submit" id="btn-submit" class="btn-save">Salvar Meta</button>
+                <button type="button" id="btn-cancel" class="btn-save" style="background: var(--gray); margin-top: 10px; display: none;" onclick="resetFormState()">Cancelar Edição</button>
             </form>
         </section>
 
@@ -78,8 +98,8 @@
                 </div>
                 <input type="file" id="photo-upload" hidden accept="image/*">
                 
-                <h3 id="display-name">Estudante de Sucesso</h3>
-                <p id="display-level">Nível 1 - Iniciante</p>
+                <h3 id="display-name">Carregando...</h3>
+                <p id="display-level">Nível 1</p>
 
                 <div id="completed-goals-profile">
                     <h4><i class="fas fa-check-circle"></i> Metas Concluídas</h4>
